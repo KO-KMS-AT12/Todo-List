@@ -1,10 +1,12 @@
 <template>
   <div id="get-todo" class="container">
-    <input class="form-control" :value="newTodo" @change="getTodo" placeholder="Add todo" />
+    <input class="form-control" :value="newTodos" @change="getTodo" placeholder="Add todo" />
     <button class="btn btn-primary" @click="addTodo">Add Todo</button>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   methods: {
     getTodo(event) {
@@ -16,8 +18,9 @@ export default {
     }
   },
   computed: {
-    newTodo() {
-      return this.$store.getters.newTodo;
+    ...mapGetters(['newTodo']),
+    newTodos:function() {
+      return this.newTodo;
     }
   }
 };

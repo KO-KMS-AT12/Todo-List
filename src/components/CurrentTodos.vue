@@ -1,8 +1,8 @@
 <template>
   <div id="current-todos" class="container">
-    <h3 v-if="todos.length > 0">Current({{todos.length}})</h3>
+    <h3 v-if="todoList.length > 0">Current({{todoList.length}})</h3>
     <ul class="list-group">
-      <li class="list-group-item" v-for="(todo,index) in todos" :key="index">
+      <li class="list-group-item" v-for="(todo,index) in todoList" :key="index">
         {{todo.body}}
         <div class="btn-group">
           <button type="button" @click="edit(todo)" class="btn btn-default btn-sm">
@@ -20,21 +20,25 @@
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   methods: {
-    edit(todo) {
-      this.$store.dispatch("editTodo", todo);
+    ...mapActions(["editTodo","completeTodo","removeTodo"]),
+    edit: function(todo) {
+      this.editTodo(todo);
     },
-    complete(todo) {
-      this.$store.dispatch("completeTodo", todo);
+    complete: function(todo) {
+      this.completeTodo(todo);
     },
-    remove(todo) {
-      this.$store.dispatch("removeTodo", todo);
+    remove:function(todo) {
+      this.removeTodo(todo);
     }
   },
   computed: {
-    todos() {
-      return this.$store.getters.todos;
+    ...mapGetters(['todos']),
+    todoList:function() {
+      return this.todos;
     }
   }
 };
