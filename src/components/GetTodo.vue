@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     ...mapGetters(['newTodo']),
-    newTodos:function() {
+    newTodos() {
       return this.newTodo;
     }
   }

@@ -25,19 +25,19 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   methods: {
     ...mapActions(["editTodo","completeTodo","removeTodo"]),
-    edit: function(todo) {
+    edit(todo) {
       this.editTodo(todo);
     },
-    complete: function(todo) {
+    complete(todo) {
       this.completeTodo(todo);
     },
-    remove:function(todo) {
+    remove(todo) {
       this.removeTodo(todo);
     }
   },
   computed: {
     ...mapGetters(['todos']),
-    todoList:function() {
+    todoList() {
       return this.todos;
     }
   }

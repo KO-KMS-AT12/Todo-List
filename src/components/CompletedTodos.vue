@@ -18,7 +18,7 @@ import {mapActions,mapGetters} from 'vuex'
 export default {
   methods: {
     ...mapActions(["removeTodo"]),
-    remove: function(todo) {
+    remove(todo) {
       this.removeTodo(todo);
     }
   },
